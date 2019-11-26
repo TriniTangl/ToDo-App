@@ -5,8 +5,10 @@ import {AppRoutingModule} from './app-routing.module';
 import {AppComponent} from './app.component';
 import {StoreModule} from '@ngrx/store';
 import {reducers, metaReducers} from './reducers';
-import { StoreDevtoolsModule } from '@ngrx/store-devtools';
-import { environment } from '../environments/environment';
+import {StoreDevtoolsModule} from '@ngrx/store-devtools';
+import {environment} from '../environments/environment';
+import {EffectsModule} from '@ngrx/effects';
+import {AppEffects} from './effects/app.effects';
 
 @NgModule({
     declarations: [
@@ -22,7 +24,8 @@ import { environment } from '../environments/environment';
                 strictActionImmutability: true
             }
         }),
-        StoreDevtoolsModule.instrument({ maxAge: 25, logOnly: environment.production })
+        StoreDevtoolsModule.instrument({maxAge: 25, logOnly: environment.production}),
+        EffectsModule.forRoot([AppEffects])
     ],
     providers: [],
     bootstrap: [AppComponent]
